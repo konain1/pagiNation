@@ -10,7 +10,7 @@ function Page({apiData}) {
 
   const [startIndex,setStartIndex] = useState(1)
 
-
+  const [pageNo,setPageNo] = useState(1)
 const NextHandler = ()=>{
 
   setStartIndex(startIndex+1)
@@ -23,6 +23,10 @@ const PrevHandler = ()=>{
   setStartIndex(startIndex-1)
 }
 
+const pageNoHandler = (event)=>{
+  console.log(event.target.innerHTML)
+  setStartIndex(event.target.innerHTML)
+}
 
 
   return (
@@ -38,17 +42,17 @@ const PrevHandler = ()=>{
 
      <div className='pageNo'>
     {
-      startIndex >= 0 ? <button onClick={PrevHandler} id='prev'>Prev</button> : 'Plz press Next Button'
+      startIndex > 0 ? <button onClick={PrevHandler} id='prev'>Prev</button> : 'Plz press Next Button'
 
     }
 
      
-      {apiData.slice(1,apiData.length / 10).map((item,key)=>{
-        return <button className={startIndex == item.id -1 ?'currentItem':''}  key={item.id} >{item.id -1}</button>
+      {apiData.slice(pageNo,apiData.length / 10).map((item,key)=>{
+        return <button onClick={(e)=>pageNoHandler (e)} className={startIndex == item.id -1 ?'currentItem':''}  key={item.id} >{item.id -1  }</button>
       })} 
 
       {
-        startIndex < apiData.length ?  <button onClick={NextHandler}>Next</button> : 'plz Press Prev Button'
+        startIndex < apiData.length-1 ?  <button onClick={NextHandler}>Next</button> : 'plz Press Prev Button'
       }
      
 
