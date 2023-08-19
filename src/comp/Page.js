@@ -8,7 +8,7 @@ function Page({apiData}) {
 
 
 
-  const [startIndex,setStartIndex] = useState(0)
+  const [startIndex,setStartIndex] = useState(1)
 
 
 const NextHandler = ()=>{
@@ -28,8 +28,8 @@ const PrevHandler = ()=>{
   return (
     <>
     <div className='photos'>
-    {apiData.slice(startIndex,startIndex+10).map((item,key)=>{
-        return ( <div key={item.id} > <img src={item.thumbnailUrl} className='photo'/><p>{item.title}</p></div>)
+    {apiData.slice(startIndex *10 -10,startIndex*10).map((item,key)=>{
+        return ( <div key={item.id} > <img src={item.thumbnailUrl} className='photo'/><p>{item.id}</p></div>)
       })}
 
     </div>
@@ -43,8 +43,8 @@ const PrevHandler = ()=>{
     }
 
      
-      {apiData.slice(startIndex,startIndex+10).map((item,key)=>{
-        return <button key={item.id} >{item.id}</button>
+      {apiData.slice(1,apiData.length / 10).map((item,key)=>{
+        return <button className={startIndex == item.id -1 ?'currentItem':''}  key={item.id} >{item.id -1}</button>
       })} 
 
       {

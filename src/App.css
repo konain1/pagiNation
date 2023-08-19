@@ -37,7 +37,11 @@
   }
 }
 
-button {
+.btn-no:focus {
+  background-color: red;
+  color: white;
+}
+button{
   width:80px;
   height: 20px;
   cursor: pointer;
@@ -62,4 +66,7 @@ button:hover{
   border: 1px solid black;
   height: 180px;
   width: 140px;
+}
+.currentItem {
+  background-color: aqua;
 }
